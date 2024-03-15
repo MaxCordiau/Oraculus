@@ -62,15 +62,15 @@ let datas = [
   ]
 
   // Déclarer une variable pour stocker l'index correspondant à l'ID
-  let currentIndex = 0;
 // let currentIndex = (datas.id === currentIndex);
+// let currentIndex = datas.findIndex(function(element) {
+//   return element.id === currentIndex;
+// });
 
-  // let signeRecherche = currentIndex;
-  let signeRecherche = "Bélier";
-  signeTrouve = datas.find(function(element) {
-    return element.signe === signeRecherche;
-  });
-
+let signeRecherche = 1;
+signeTrouve = datas.find(function(element) {
+  return element.id === signeRecherche;
+});
   // let signeTrouve="";
 // recuperer les données du signe Bélier
 let travailBélier = signeTrouve.travail;
@@ -158,95 +158,53 @@ const date=document.querySelector("#date")
 date.insertAdjacentHTML('beforeend', signeTrouve.date);
 
 
-// const rightArrow = document.querySelector('.right-arrow');
-// rightArrow.addEventListener('click', () => {
-//     signeTrouve = datas.find(function(element) {
-//       return element.signe === signeRecherche;
-//     });
   const html =
   `<article>
-  <h1 id="signe">${signeTrouve.signe}</h1>
-  <p id="amour"><span>Amour :</span>${signeTrouve.amour}</p>
-  <p id="travail"><span>Travail :</span>${signeTrouve.travail}</p>
-  <p id="argent"><span>Argent :</span>${signeTrouve.argent}</p>
-  <p id="sante"><span>Santé :</span>${signeTrouve.sante}</p>
-  <p id="famille"><span>Famille et amis :</span>${signeTrouve.famille}</p>
-  <p id="conseil"><span>Conseil :</span>${signeTrouve.conseil}</p>
+  <h1 id="signe">${signeTrouve.signe}</h1><br>
+  <p id="amour"><span>Amour : </span>${signeTrouve.amour}</p><br>
+  <p id="travail"><span>Travail : </span>${signeTrouve.travail}</p><br>
+  <p id="argent"><span>Argent : </span>${signeTrouve.argent}</p><br>
+  <p id="sante"><span>Santé : </span>${signeTrouve.sante}</p><br>
+  <p id="famille"><span>Famille et amis : </span>${signeTrouve.famille}</p><br>
+  <p id="conseil"><span>Conseil : </span>${signeTrouve.conseil}</p><br>
   </article> `
   document.querySelector("aside img").src = signeTrouve.image
   document.querySelector("article h1").innerText= signeTrouve.signe
 
-  document.querySelector("article").innerHTML = html;
-// })
+document.querySelector("article").innerHTML = html;
+// _________________________________________________________________________________________
+function afficherHoroscope(index) {
+  const signeTrouve = datas.find(element => element.id === index);
 
-// // mettre le nom du signe dans le titre(h1)
-// let titre = document.querySelector("h1");
-// titre.innerHTML = signeTrouve.signe;
+  document.getElementById('amour').innerHTML = `<span>Amour :</span> ${signeTrouve.amour}`;
+  document.getElementById('travail').innerHTML = `<span>Travail :</span> ${signeTrouve.travail}`;
+  document.getElementById('argent').innerHTML = `<span>Argent :</span> ${signeTrouve.argent}`;
+  document.getElementById('sante').innerHTML = `<span>Santé :</span> ${signeTrouve.sante}`;
+  document.getElementById('famille').innerHTML = `<span>Famille et amis :</span> ${signeTrouve.famille}`;
+  document.getElementById('conseil').innerHTML = `<span>Conseil :</span> ${signeTrouve.conseil}`;
+  document.getElementById('signe').innerText = signeTrouve.signe;
+  document.getElementById('date').innerText = `DU ${signeTrouve.date}`;
+  document.querySelector("aside img").src = signeTrouve.image;
+}
+// _________________________________________________________________________________________
 
-// Fonction pour afficher l'horoscope correspondant à l'index donné
-// function afficherHoroscope(index) {
-//     if (index >= 0 && index < datas.length) {
-//         const horoscope = datas[index]; // Récupérer l'horoscope correspondant à l'index
-//         // Mettre à jour le contenu des éléments HTML avec les données de l'horoscope
-//         document.getElementById('signe').textContent = horoscope.signe;
-//         document.getElementById('date').textContent = horoscope.date;
-//         document.getElementById('amour').innerHTML = `<span>Amour :</span> ${horoscope.amour}`;
-//         document.getElementById('travail').innerHTML = `<span>Travail :</span> ${horoscope.travail}`;
-//         document.getElementById('argent').innerHTML = `<span>Argent :</span> ${horoscope.argent}`;
-//         document.getElementById('sante').innerHTML = `<span>Santé :</span> ${horoscope.sante}`;
-//         document.getElementById('famille').innerHTML = `<span>Famille et amis :</span> ${horoscope.famille}`;
-//         document.getElementById('conseil').innerHTML = `<span>Conseil :</span> ${horoscope.conseil}`;
-//         document.getElementById('image').setAttribute('src', horoscope.image);
-// }}
+const arrowRight = document.querySelector('.arrow-right');
+const arrowLeft = document.querySelector('.arrow-left');
 
-// // Vérifier si l'index est valide
-// if (index >= 0 && index < horoscopes.length) {
-//   // Récupérer les données du signe correspondant à l'index
-//   let signeTrouve = horoscopes[index];
-//   // Mettre à jour les éléments HTML avec les nouvelles données
-//   amour.innerHTML = signeTrouve.amour;
-//   travail.innerHTML = signeTrouve.travail;
-//   argent.innerHTML = signeTrouve.argent;
-//   sante.innerHTML = signeTrouve.sante;
-//   famille.innerHTML = signeTrouve.famille;
-//   conseil.innerHTML = signeTrouve.conseil;
-//   image.setAttribute('src', signeTrouve.image);
-//   signe.innerHTML = signeTrouve.signe;
-//   date.innerHTML = signeTrouve.date;
-//   // Mettre à jour le titre avec le nom du signe
-//   titre.innerHTML = signeTrouve.signe;
-// }
-// Afficher l'horoscope initial dès le chargement de la page
-// afficherHoroscope(currentIndex);
-// // // Sélectionner les éléments flèches gauche et droite
-// const arrowLeft = document.querySelector('.arrow-left');
-// const arrowRight = document.querySelector('.arrow-right');
-
-
-
-// arrowRight.addEventListener('click', () => {
-//   // Augmente l'index actuel
-//   currentIndex++;
-//   // Vérifie si l'index est supérieur ou égal à la longueur de la liste d'horoscopes, 
-//   // indiquant que nous avons atteint la fin de la liste
-//   if (currentIndex >= datas.length) {
-//       // Réinitialise l'index pour qu'il pointe vers le premier horoscope dans la liste
-//       currentIndex = 0;
-//   }
-//   // Appelle la fonction pour afficher l'horoscope correspondant à ce nouvel index
-//   afficherHoroscope(currentIndex);
-// });
-// arrowLeft.addEventListener('click', () => {
-//   // Diminue l'index actuel
-//   currentIndex--;
-//   // Vérifie si l'index est devenu négatif, indiquant que nous avons atteint le début de la liste
-//   if (currentIndex < 0) {
-//       // Réinitialise l'index pour qu'il pointe vers le dernier horoscope dans la liste
-//       currentIndex = datas.length - 1;
-//   }
-//   // Appelle la fonction pour afficher l'horoscope correspondant à ce nouvel index
-//   afficherHoroscope(currentIndex);
-// });
+arrowRight.addEventListener('click', () => {
+  signeRecherche++;
+  if (signeRecherche >= datas.length) {
+      signeRecherche = 0;
+  }
+  afficherHoroscope(signeRecherche);
+});
+arrowLeft.addEventListener('click', () => {
+  signeRecherche--;
+  if (signeRecherche < 0) {
+      signeRecherche = datas.length - 1;
+  }
+  afficherHoroscope(signeRecherche);
+});
 
 
 
