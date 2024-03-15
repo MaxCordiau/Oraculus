@@ -157,36 +157,42 @@ let date_signe = document.getElementById('date');
 const date=document.querySelector("#date")
 date.insertAdjacentHTML('beforeend', signeTrouve.date);
 
+let signe_signe = document.getElementById('signe');
+const signe=document.querySelector("#signe")
+signe.insertAdjacentHTML('beforeend', signeTrouve.signe);
 
-  const html =
-  `<article>
-  <h1 id="signe">${signeTrouve.signe}</h1><br>
-  <p id="amour"><span>Amour : </span>${signeTrouve.amour}</p><br>
-  <p id="travail"><span>Travail : </span>${signeTrouve.travail}</p><br>
-  <p id="argent"><span>Argent : </span>${signeTrouve.argent}</p><br>
-  <p id="sante"><span>Santé : </span>${signeTrouve.sante}</p><br>
-  <p id="famille"><span>Famille et amis : </span>${signeTrouve.famille}</p><br>
-  <p id="conseil"><span>Conseil : </span>${signeTrouve.conseil}</p><br>
-  </article> `
-  document.querySelector("aside img").src = signeTrouve.image
-  document.querySelector("article h1").innerText= signeTrouve.signe
 
-document.querySelector("article").innerHTML = html;
+//   const html =
+//   `<article>
+//   <h1 id="signe">${signeTrouve.signe}</h1><br>
+//   <p id="amour"><span>Amour : </span>${signeTrouve.amour}</p><br>
+//   <p id="travail"><span>Travail : </span>${signeTrouve.travail}</p><br>
+//   <p id="argent"><span>Argent : </span>${signeTrouve.argent}</p><br>
+//   <p id="sante"><span>Santé : </span>${signeTrouve.sante}</p><br>
+//   <p id="famille"><span>Famille et amis : </span>${signeTrouve.famille}</p><br>
+//   <p id="conseil"><span>Conseil : </span>${signeTrouve.conseil}</p><br>
+//   </article> `
+//   document.querySelector("aside img").src = signeTrouve.image
+//   document.querySelector("article h1").innerText= signeTrouve.signe
+
+// document.querySelector("article").innerHTML = html;
 // _________________________________________________________________________________________
 function afficherHoroscope(index) {
   const signeTrouve = datas.find(element => element.id === index);
-
+  
+  document.getElementById('signe').innerText = `<h1 id="signe">${signeTrouve.signe}</h1><br></br>`;
+  document.getElementById('date').innerText = `DU ${signeTrouve.date}`;
   document.getElementById('amour').innerHTML = `<span>Amour :</span> ${signeTrouve.amour}`;
   document.getElementById('travail').innerHTML = `<span>Travail :</span> ${signeTrouve.travail}`;
   document.getElementById('argent').innerHTML = `<span>Argent :</span> ${signeTrouve.argent}`;
   document.getElementById('sante').innerHTML = `<span>Santé :</span> ${signeTrouve.sante}`;
   document.getElementById('famille').innerHTML = `<span>Famille et amis :</span> ${signeTrouve.famille}`;
   document.getElementById('conseil').innerHTML = `<span>Conseil :</span> ${signeTrouve.conseil}`;
-  document.getElementById('signe').innerText = signeTrouve.signe;
-  document.getElementById('date').innerText = `DU ${signeTrouve.date}`;
   document.querySelector("aside img").src = signeTrouve.image;
+  document.querySelector("article h1").innerText= signeTrouve.signe
+
 }
-// _________________________________________________________________________________________
+// // _________________________________________________________________________________________
 
 const arrowRight = document.querySelector('.arrow-right');
 const arrowLeft = document.querySelector('.arrow-left');
